@@ -75,7 +75,7 @@ class TodoViewTestCase(TestCase):
         task2 = Task(title='task2', due_at=timezone.make_aware(datetime(2024, 8, 1)))
         task2.save()
         client = Client()
-        response = client.post('/?order=post')
+        response = client.get('/?order=post')
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.templates[0].name, 'todo/index.html')
@@ -88,7 +88,7 @@ class TodoViewTestCase(TestCase):
         task2 = Task(title='task2', due_at=timezone.make_aware(datetime(2024, 8, 1)))
         task2.save()
         client = Client()
-        response = client.post('/?order=due')
+        response = client.get('/?order=due')
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.templates[0].name, 'todo/index.html')
